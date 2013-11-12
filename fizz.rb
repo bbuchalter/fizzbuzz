@@ -1,5 +1,9 @@
 class Fizz
   def self.process(val)
-    (val.to_i % 3)==0 ? "FIZZ" : ""
+    processable?(val) ? "FIZZ" : ""
+  end
+
+  def self.processable?(val)
+    (val.to_i % 3) == 0
   end
 end

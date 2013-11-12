@@ -6,34 +6,28 @@ class FizBuzzRunner
     @default_processor = default_processor
   end
 
-  def as_array
-    output = []
-    range.each do |i|
-      val = ""
-      val = run_processors(i, val)
-      val = use_fall_back_if_no_val_set(i, val)
-      output << val
-    end
-    output
-  end
-
   def as_string
     as_array.join(" ")
+  end
+
+  def as_array
+    range.collect { |i| results_from(applicable_processors(i), i) }
   end
 
   private
 
   attr_reader :range, :processors, :default_processor
 
-  def run_processors(i, val)
-    processors.each do |processor|
-      val += processor.process(i.to_s)
-    end
-    val
+  def results_from(processors, value)
+    results = processors.collect { |p| p.process(value.to_s) }
+    results.join("")
   end
 
-
-  def use_fall_back_if_no_val_set(i, val)
-    val == '' ? default_processor.process(i.to_s) : val
+  def applicable_processors(value)
+    applicable_processors = processors.select { |p| p.processable?(value) }
+    if applicable_processors.length == 0
+      applicable_processors << default_processor
+    end
+    applicable_processors
   end
 end

@@ -1,5 +1,9 @@
 class Buzz
   def self.process(val)
-    (val.to_i%5 == 0) ? "BUZZ" : ""
+    processable?(val) ? "BUZZ" : ""
+  end
+
+  def self.processable?(val)
+    (val.to_i % 5) == 0
   end
 end
