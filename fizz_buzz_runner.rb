@@ -18,8 +18,8 @@ class FizBuzzRunner
 
   attr_reader :range, :processors, :default_processor
 
-  def results_from(processors, value)
-    results = processors.collect { |p| p.process(value.to_s) }
+  def results_from(these_processors, value)
+    results = these_processors.collect { |p| p.process(value.to_s) }
     results.join("")
   end
 
