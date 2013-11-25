@@ -1,4 +1,4 @@
-class FizBuzzRunner
+class FizzBuzzRunner
 
   def initialize(range: range, processors: processors, default_processor: default_processor)
     @range = range

@@ -19,7 +19,7 @@ class FizzBuzzTest < Test::Unit::TestCase
   private
 
   def subject
-    FizBuzzRunner.new(range: range, processors: processors, default_processor: default_processor)
+    FizzBuzzRunner.new(range: range, processors: processors, default_processor: default_processor)
   end
 
   def range
